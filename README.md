@@ -1,53 +1,136 @@
 # ECOP11A_Rasp-Attend-2
 
-Este repositório inclui os arquivos do sistema de presença v2 utilizando um raspberry pi 3 B+, somente para fins de arquivo. Replique por sua conta e risco.
+> **Sistema de presença v2 utilizando Raspberry Pi 3 B+**  
+> _Repositório apenas para fins de arquivo. Replique por sua conta e risco._
 
-## Funcionamento demonstrado via imagens:
+---
 
-1. O úsuario, entrará no hostname hospedado localmente pelo raspberry (chamada.local), e um site será exibido na porta 80, Coleta do Nome e Matricula, digitado pelo úsuario. 
+## 📸 Demonstração do Funcionamento
 
-<img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/coleta-1.png">
+### 1. Acesso Inicial
 
-2. Após a digitação pelo úsuario, caso ele tente enviar os dados, e estiverem errados (fora do padrão esperado), ele mostrará uma mensagem de erro:
+O usuário acessa o hostname hospedado localmente pelo Raspberry (`chamada.local`) na porta **80** e preenche o nome e matrícula:
 
-<img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/coleta_erro-2.png">
+<p align="center">
+  <img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/coleta-1.png" width="500">
+</p>
 
-3. Caso os dados correspondam ao padrão esperado, os dados são enviados, junto ao IP da pessoa que envia a requisição:
+---
 
-<img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/coleta_sucesso-3.png">
+### 2. Validação dos Dados
 
-4. Nesta etapa, ocorre toda a lógica interna do código, que será explicada mais á frente.
+Se os dados estiverem incorretos, uma mensagem de erro é exibida:
 
-5. Após a coleta, e execução da lógica interna (Backend), os dados serão exibidos em uma página hospedada na porta 81, do mesmo host: (chamada.local:81)
+<p align="center">
+  <img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/coleta_erro-2.png" width="500">
+</p>
 
-<img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/exibicao-1.png">
+---
 
-6. Dentro desta página, caso ele não encontre os dados, será exibido uma mensagem de erro:
+### 3. Dados Corretos
 
-<img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/exibicao_erro-2.png">
+Ao preencher corretamente, os dados são enviados junto ao IP do usuário:
 
-Esta mensagem, pode ocorrer caso nenhum usuario tenha se registrado ainda, ou caso realmente ocorra um erro interno.
+<p align="center">
+  <img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/coleta_sucesso-3.png" width="500">
+</p>
 
-7. Dentro do site, há um menu de configurações, onde podemos definir o n° de aulas, a duração de cada aula, e a % minima de tempo conectado em minutos em relação á carga horaria (n° de aulas * n° de minutos). E além disso, ele apresenta uma toggle box para mostrar os dados de conexão, como IP e MAC. 
+---
 
-<img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/exibicao_config-3.png">
+### 4. Processamento Interno
 
-8. Caso o úsuario ainda não tenha o tempo de presença minimo conectado, mas esteja conectado, ele será exibido com o status de: "Em aula/ Avaliar":
+A lógica interna do sistema é executada (detalhes mais abaixo).
 
-<img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/exibicao-1.png">
+---
 
-9. Caso o usuario bata a quantidade de minutos presentes pré configuradas, ele será exibido com um status de presente, como mostra a imagem:
+### 5. Exibição dos Dados
 
-<img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/exibicao-4.png">
+Os dados são exibidos em uma página na porta **81** do mesmo host (`chamada.local:81`):
 
-10. Caso o úsuario, não tenha tido o tempo minimo de presença, e esteja desconectado, será exibido com um status de Ausente:
+<p align="center">
+  <img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/exibicao-1.png" width="500">
+</p>
 
-<img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/exibicao-5.png">
+---
 
-11. Caso o menu de cada aluno seja expandido, irá ser exibido os dados de conexão dele, e as timestamps, nesse caso inicial, somente há a data de conexão inicial:
+### 6. Erro ao Exibir Dados
 
-<img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/exibicao-6.png">
+Se não houver dados ou ocorrer um erro interno, uma mensagem de erro aparece:
 
-12. Após algumas sessões, o menu expandido irá mostrar cada desconexão/reconexão detectados, como mostra a imagem: 
+<p align="center">
+  <img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/exibicao_erro-2.png" width="500">
+</p>
 
-<img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/exibicao-7.png">
+> _Pode ocorrer se nenhum usuário se registrou ou por erro interno._
+
+---
+
+### 7. Menu de Configurações
+
+No site, há um menu para definir:
+- Número de aulas
+- Duração de cada aula
+- % mínima de tempo conectado (em minutos)
+- Toggle para mostrar dados de conexão (IP e MAC)
+
+<p align="center">
+  <img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/exibicao_config-3.png" width="500">
+</p>
+
+---
+
+### 8. Status: "Em aula / Avaliar"
+
+Usuário conectado, mas ainda sem tempo mínimo de presença:
+
+<p align="center">
+  <img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/exibicao-1.png" width="500">
+</p>
+
+---
+
+### 9. Status: Presente
+
+Usuário atingiu o tempo mínimo de presença:
+
+<p align="center">
+  <img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/exibicao-4.png" width="500">
+</p>
+
+---
+
+### 10. Status: Ausente
+
+Usuário desconectado antes de atingir o tempo mínimo:
+
+<p align="center">
+  <img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/exibicao-5.png" width="500">
+</p>
+
+---
+
+### 11. Detalhes do Aluno
+
+Expandindo o menu de cada aluno, são exibidos dados de conexão e timestamps (inicialmente, apenas a data de conexão):
+
+<p align="center">
+  <img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/exibicao-6.png" width="500">
+</p>
+
+---
+
+### 12. Histórico de Conexões
+
+Após algumas sessões, o menu mostra cada desconexão/reconexão detectada:
+
+<p align="center">
+  <img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/exibicao-7.png" width="500">
+</p>
+
+---
+
+## Lógica Interna
+
+
+
+---
