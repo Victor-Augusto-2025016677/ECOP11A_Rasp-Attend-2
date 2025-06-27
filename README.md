@@ -1,15 +1,24 @@
-# ECOP11A_Rasp-Attend-2
+# 📡 ECOP11A_Rasp-Attend-2
 
 > **Sistema de presença v2 utilizando Raspberry Pi 3 B+**  
 > _Repositório apenas para fins de arquivo. Replique por sua conta e risco._
 
 ---
 
-## 📸 Demonstração do Funcionamento
+## 📑 Sumário
 
-### 1. Acesso Inicial
+- [Demonstração](#-demonstração)
+- [Como Funciona](#-como-funciona)
+- [Resumo Técnico](#-resumo-técnico)
+- [Contato](#-contato)
 
-O usuário acessa o hostname hospedado localmente pelo Raspberry (`chamada.local`) na porta **80** e preenche o nome e matrícula:
+---
+
+## 🎬 Demonstração
+
+### 1️⃣ Acesso Inicial
+
+Usuário acessa `chamada.local` (porta **80**) e preenche nome e matrícula:
 
 <p align="center">
   <img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/coleta-1.png" width="500">
@@ -17,9 +26,9 @@ O usuário acessa o hostname hospedado localmente pelo Raspberry (`chamada.local
 
 ---
 
-### 2. Validação dos Dados
+### 2️⃣ Validação dos Dados
 
-Se os dados estiverem incorretos, uma mensagem de erro é exibida:
+Se houver erro, uma mensagem é exibida:
 
 <p align="center">
   <img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/coleta_erro-2.png" width="500">
@@ -27,9 +36,9 @@ Se os dados estiverem incorretos, uma mensagem de erro é exibida:
 
 ---
 
-### 3. Dados Corretos
+### 3️⃣ Dados Corretos
 
-Ao preencher corretamente, os dados são enviados junto ao IP do usuário:
+Dados enviados junto ao IP do usuário:
 
 <p align="center">
   <img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/coleta_sucesso-3.png" width="500">
@@ -37,15 +46,15 @@ Ao preencher corretamente, os dados são enviados junto ao IP do usuário:
 
 ---
 
-### 4. Processamento Interno
+### 4️⃣ Processamento Interno
 
-A lógica interna do sistema é executada (detalhes mais abaixo).
+A lógica interna do sistema é executada (detalhes abaixo).
 
 ---
 
-### 5. Exibição dos Dados
+### 5️⃣ Exibição dos Dados
 
-Os dados são exibidos em uma página na porta **81** do mesmo host (`chamada.local:81`):
+Página na porta **81** mostra os dados:
 
 <p align="center">
   <img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/exibicao-1.png" width="500">
@@ -53,9 +62,9 @@ Os dados são exibidos em uma página na porta **81** do mesmo host (`chamada.lo
 
 ---
 
-### 6. Erro ao Exibir Dados
+### 6️⃣ Erro ao Exibir Dados
 
-Se não houver dados ou ocorrer um erro interno, uma mensagem de erro aparece:
+Se não houver dados ou ocorrer erro interno:
 
 <p align="center">
   <img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/exibicao_erro-2.png" width="500">
@@ -65,13 +74,14 @@ Se não houver dados ou ocorrer um erro interno, uma mensagem de erro aparece:
 
 ---
 
-### 7. Menu de Configurações
+### 7️⃣ Menu de Configurações
 
-No site, há um menu para definir:
+Defina critérios de presença e exibição:
+
 - Número de aulas
 - Duração de cada aula
-- % mínima de tempo conectado (em minutos)
-- Toggle para mostrar dados de conexão (IP e MAC)
+- % mínima de tempo conectado
+- Mostrar dados de conexão (IP/MAC)
 
 <p align="center">
   <img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/exibicao_config-3.png" width="500">
@@ -79,9 +89,9 @@ No site, há um menu para definir:
 
 ---
 
-### 8. Status: "Em aula / Avaliar"
+### 8️⃣ Status: "Em aula / Avaliar"
 
-Usuário conectado, mas ainda sem tempo mínimo de presença:
+Usuário conectado, mas ainda sem tempo mínimo:
 
 <p align="center">
   <img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/exibicao-1.png" width="500">
@@ -89,7 +99,7 @@ Usuário conectado, mas ainda sem tempo mínimo de presença:
 
 ---
 
-### 9. Status: Presente
+### 9️⃣ Status: Presente
 
 Usuário atingiu o tempo mínimo de presença:
 
@@ -99,9 +109,9 @@ Usuário atingiu o tempo mínimo de presença:
 
 ---
 
-### 10. Status: Ausente
+### 🔟 Status: Ausente
 
-Usuário desconectado antes de atingir o tempo mínimo:
+Usuário desconectado antes do tempo mínimo:
 
 <p align="center">
   <img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/exibicao-5.png" width="500">
@@ -109,9 +119,9 @@ Usuário desconectado antes de atingir o tempo mínimo:
 
 ---
 
-### 11. Detalhes do Aluno
+### 1️⃣1️⃣ Detalhes do Aluno
 
-Expandindo o menu de cada aluno, são exibidos dados de conexão e timestamps (inicialmente, apenas a data de conexão):
+Expandindo o menu, veja dados de conexão e timestamps:
 
 <p align="center">
   <img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/exibicao-6.png" width="500">
@@ -119,9 +129,9 @@ Expandindo o menu de cada aluno, são exibidos dados de conexão e timestamps (i
 
 ---
 
-### 12. Histórico de Conexões
+### 1️⃣2️⃣ Histórico de Conexões
 
-Após algumas sessões, o menu mostra cada desconexão/reconexão detectada:
+Veja cada desconexão/reconexão detectada:
 
 <p align="center">
   <img src="https://github.com/Victor-Augusto-2025016677/ECOP11A_Rasp-Attend-2/blob/main/img/exibicao-7.png" width="500">
@@ -129,17 +139,19 @@ Após algumas sessões, o menu mostra cada desconexão/reconexão detectada:
 
 ---
 
-## 🛠️ Resumo do Funcionamento Interno
+## ⚙️ Como Funciona
 
-O sistema ECOP11A_Rasp-Attend-2 utiliza um Raspberry Pi para automatizar a coleta e exibição de presença em ambiente local. O fluxo principal é:
+O sistema ECOP11A_Rasp-Attend-2 utiliza um Raspberry Pi para automatizar a coleta e exibição de presença em ambiente local.
+
+### Fluxo Principal
 
 1. **Coleta de Dados:**  
    Usuários acessam a página na porta 80 (`chamada.local`), preenchem nome e matrícula. O backend Node.js (`server.js`) valida e registra os dados junto ao IP em um arquivo CSV.
 
 2. **Processamento Periódico:**  
    Scripts Python (`parser_nmap.py` e `timestamps.py`) são executados em loop via systemd e shell script.  
-   - `parser_nmap.py` faz varredura na rede, identifica dispositivos conectados (por MAC/IP) e atualiza o inventário.
-   - `timestamps.py` cruza os dados de presença (CSV) com o inventário de rede, gerando um arquivo JSON com sessões de conexão/desconexão por usuário.
+   - `parser_nmap.py`: Varre a rede, identifica dispositivos conectados (por MAC/IP) e atualiza o inventário.
+   - `timestamps.py`: Cruza os dados de presença (CSV) com o inventário de rede, gerando um arquivo JSON com sessões de conexão/desconexão por usuário.
 
 3. **Exibição dos Dados:**  
    Um servidor Flask (porta 81) lê o JSON gerado e exibe, via página web, o status de presença dos usuários, tempo conectado, histórico de sessões e permite configuração de critérios de presença.
@@ -147,6 +159,24 @@ O sistema ECOP11A_Rasp-Attend-2 utiliza um Raspberry Pi para automatizar a colet
 4. **Automação:**  
    Serviços systemd garantem que todos os scripts e servidores iniciem automaticamente e mantenham o sistema funcionando sem intervenção manual.
 
-O sistema é totalmente local, não depende de internet, e utiliza apenas dados da rede interna para validar a presença dos usuários.
+> **Nota:**  
+> O sistema é totalmente local, não depende de internet, e utiliza apenas dados da rede interna para validar a presença dos usuários.
 
 ---
+
+## 🛠️ Resumo Técnico
+
+| Componente         | Função                                                                 |
+|--------------------|------------------------------------------------------------------------|
+| **Node.js (server.js)** | Recebe e valida dados dos usuários, salva em CSV                   |
+| **Python (parser_nmap.py)** | Varre a rede, identifica dispositivos e atualiza inventário    |
+| **Python (timestamps.py)** | Gera sessões de conexão/desconexão por usuário em JSON         |
+| **Flask**          | Exibe dados de presença e histórico via web (porta 81)                  |
+| **systemd**        | Automatiza execução dos scripts e servidores                            |
+
+---
+
+## 📬 Contato
+
+Para mais informações, entre em contato:  
+**d2025016677@unifei.edu.br**
