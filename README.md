@@ -129,8 +129,24 @@ Após algumas sessões, o menu mostra cada desconexão/reconexão detectada:
 
 ---
 
-## Lógica Interna
+## 🛠️ Resumo do Funcionamento Interno
 
+O sistema ECOP11A_Rasp-Attend-2 utiliza um Raspberry Pi para automatizar a coleta e exibição de presença em ambiente local. O fluxo principal é:
 
+1. **Coleta de Dados:**  
+   Usuários acessam a página na porta 80 (`chamada.local`), preenchem nome e matrícula. O backend Node.js (`server.js`) valida e registra os dados junto ao IP em um arquivo CSV.
+
+2. **Processamento Periódico:**  
+   Scripts Python (`parser_nmap.py` e `timestamps.py`) são executados em loop via systemd e shell script.  
+   - `parser_nmap.py` faz varredura na rede, identifica dispositivos conectados (por MAC/IP) e atualiza o inventário.
+   - `timestamps.py` cruza os dados de presença (CSV) com o inventário de rede, gerando um arquivo JSON com sessões de conexão/desconexão por usuário.
+
+3. **Exibição dos Dados:**  
+   Um servidor Flask (porta 81) lê o JSON gerado e exibe, via página web, o status de presença dos usuários, tempo conectado, histórico de sessões e permite configuração de critérios de presença.
+
+4. **Automação:**  
+   Serviços systemd garantem que todos os scripts e servidores iniciem automaticamente e mantenham o sistema funcionando sem intervenção manual.
+
+O sistema é totalmente local, não depende de internet, e utiliza apenas dados da rede interna para validar a presença dos usuários.
 
 ---
